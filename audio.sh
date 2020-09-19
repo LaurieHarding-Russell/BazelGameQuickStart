@@ -13,7 +13,7 @@ selectAudioLibrary() {
             break;
         ;;
         2 | None) printf "Not using a Audio library\n"
-            graphics=$AUDIO_NONE
+            audio=$AUDIO_NONE
             break;
         ;;
         *) printf "$ERROR uhh, maybe try a number like 1 or 2? $RESET\n";

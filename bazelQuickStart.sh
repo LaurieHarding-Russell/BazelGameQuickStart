@@ -13,8 +13,8 @@ buildFile="""
 
 workspaceFile="""
 # Generated
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+load(\"@bazel_tools//tools/build_defs/repo:http.bzl\", \"http_archive\")
+load(\"@bazel_tools//tools/build_defs/repo:http.bzl\", \"http_file\")
 """
 
 bazelrcFile=build="""
@@ -55,11 +55,11 @@ mkdir -p $destination/external
 generateGraphicsData
 
 
-echo $workspaceFile >> $destination/WORKSPACE
-echo $buildFile >> $destination/BUILD
-echo $gitignoreFile >> $destination/.gitignore
-echo $bazelrcFile >> $destination/.bazelrc
-echo $mainCppFile >> $destination/Game.cpp
+echo "$workspaceFile" >> $destination/WORKSPACE
+echo "$buildFile" >> $destination/BUILD
+echo "$gitignoreFile" >> $destination/.gitignore
+echo "$bazelrcFile" >> $destination/.bazelrc
+echo "$mainCppFile" >> $destination/Game.cpp
 
 read -p "Basic project setup. Do you want to configure advance settings? (y/n)" advance
 advance=${advance:-n}
