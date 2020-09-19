@@ -1,29 +1,29 @@
 #!/bin/bash
 
 source otherDependencies.sh
+source graphics.sh
 
 readonly ERROR='\033[0;31m'
 readonly INFO='\033[0;34m'
 readonly SUCCESS='\033[0;32m'
 readonly RESET='\033[0m'
 
-declare -i GRAPHICS_VULKAN=1
-declare -i GRAPHICS_NONE=2
+declare -ir AUDIO_OPEN_AL=1
+declare -ir AUDIO_NONE=99
+declare -i audio=0
 
-declare -i graphics=0
+selectAudioLibrary() {
+    local options=("1. OpenAL" "2. None")
+    PS3="Choose an audio library:"
+    select opt in "${options[@]}"; do
 
-selectGraphicsLibrary(){
-    local options=("1. Vulkan" "2. None")
-    PS3="Choose a graphics library:"
-    select opt in "${options[@]}"; do 
-
-        case "$REPLY" in
-        1 | Vulkan ) printf "Using Vulkan\n"
-            graphics=$GRAPHICS_VULKAN
+        case "$REPLY" in 
+        1 | OpenAL ) printf "Using OpenAL\n"
+            audio=$AUDIO_OPEN_AL
             break;
         ;;
-        2 | None) printf "Not using a Graphics library\n"
-            graphics=$GRAPHICS_NONE
+        3 | None) printf "Not using a Audio library\n"
+            graphics=$AUDIO_NONE
             break;
         ;;
         *) printf "$ERROR uhh, maybe try a number like 1 or 2? $RESET\n";
@@ -94,6 +94,15 @@ echo $workspaceFile >> $location/$name/WORKSPACE
 echo $buildFile >> $location/$name/BUILD
 echo $gitignoreFile >> $location/$name/.gitignore
 echo $bazelrcFile >> $location/$name/.bazelrc
-echo $mainCppFile >> $location/$name/game.cpp
+echo $mainCppFile >> $location/$name/Game.cpp
+
+read -p "Basic project setup. Do you want to configure advance settings? (y/n)" advance
+advance=${advance:-n}
+
+if [ "$advance" == "y" ]
+then
+    printf "$ERROR Whoops, still need to code this $RESET\n";
+fi
+echo $advance
 
 printf "$SUCCESS Done!\n$RESET"
