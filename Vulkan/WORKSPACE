@@ -1,0 +1,23 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+
+http_archive(
+    name = "glfw",
+    strip_prefix = "glfw-8d7e5cdb49a1a5247df612157ecffdd8e68923d2",
+    urls = [
+        "https://github.com/glfw/glfw/archive/8d7e5cdb49a1a5247df612157ecffdd8e68923d2.tar.gz",
+    ],
+    build_file = "glfw.BUILD",
+    sha256 = "66340d8f015381a368ed34e5eb20c3de2cdd916461fa43d2703d624baa48dde8"
+)
+
+
+# git_repository(
+http_archive(
+    name = "glslang",
+    strip_prefix = "glslang-6a6e311d81ddfa6debf5659f05c311e3b57b5f77",
+    urls = [
+        "https://github.com/KhronosGroup/glslang/archive/6a6e311d81ddfa6debf5659f05c311e3b57b5f77.tar.gz",
+    ],
+    sha256 = "a35781412017235442bc4cadc38846bb650ba8295a893422aad4ac6fd3dcd686"
+)
