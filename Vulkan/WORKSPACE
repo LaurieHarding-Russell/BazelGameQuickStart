@@ -1,6 +1,3 @@
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
-
 http_archive(
     name = "glfw",
     strip_prefix = "glfw-8d7e5cdb49a1a5247df612157ecffdd8e68923d2",

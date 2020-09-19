@@ -1,0 +1,6 @@
+http_archive(
+    name = "openal-soft",
+    urls = ["https://github.com/LaurieHarding-Russell/openal-soft/archive/0288c3ed3894f9d093537825bc2a03fc35a424ef.zip"],
+    strip_prefix = "openal-soft-0288c3ed3894f9d093537825bc2a03fc35a424ef",
+)
+

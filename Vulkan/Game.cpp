@@ -2,11 +2,11 @@
 #include <stdexcept>
 #include <cstdlib>
 
-#include "RPGRenderer.h"
+#include "Renderer.h"
 
 
 int main(int argc, char** argv) {
-    RPGRenderer renderer;
+    Renderer renderer;
 
     renderer.run();
 

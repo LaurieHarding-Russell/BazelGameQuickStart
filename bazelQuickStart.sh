@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source otherDependencies.sh
+
 readonly ERROR='\033[0;31m'
 readonly INFO='\033[0;34m'
 readonly SUCCESS='\033[0;32m'
@@ -51,6 +53,8 @@ buildFile="""
 
 workspaceFile="""
 # Generated
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 """
 
 bazelrcFile=build="""
@@ -77,8 +81,7 @@ if [ "$graphics" == "$GRAPHICS_VULKAN" ]
 then
     printf "$INFO Adding Vulkan stuff $RESET\n"
     mainCppFile=$(<$parent_path/Vulkan/Game.cpp)
-    printf "$parent_path/Vulkan/Renderer.cpp\n"
-    cp $parent_path/Vulkan/Renderer.cpp $location/$name/Renderer.cpp
+    cp $parent_path/Vulkan/Renderer.h $location/$name/Renderer.h
     cp -R $parent_path/Vulkan/external/. $location/$name/external
     cp -R $parent_path/Vulkan/shaders/. $location/$name/shaders
     cp -R $parent_path/Vulkan/toolchain/. $location/$name/toolchain
