@@ -27,3 +27,28 @@ selectGraphicsLibrary() {
         esac
     done
 }
+
+generateGraphicsData() {
+    if [ "$graphics" == "$GRAPHICS_VULKAN" ] 
+    then
+        printf "$INFO Adding Vulkan stuff $RESET\n"
+        mainCppFile=$(<$parent_path/Vulkan/Game.cpp)
+        cp $parent_path/Vulkan/Renderer.h $destination/Renderer.h
+        cp -R $parent_path/Vulkan/external/. $destination/external
+        cp -R $parent_path/Vulkan/shaders/. $destination/shaders
+        cp -R $parent_path/Vulkan/toolchain/. $destination/toolchain
+        buildFile=$buildFile$(<$parent_path/Vulkan/BUILD)
+        workspaceFile=$workspaceFile$(<$parent_path/Vulkan/WORKSPACE)
+    fi
+
+    if [ "$graphics" == "$GRAPHICS_OPEN_GL" ] 
+    then
+        printf "$INFO Adding Vulkan stuff $RESET\n"
+        mainCppFile=$(<$parent_path/OpenGL/Game.cpp)
+        cp $parent_path/Vulkan/Renderer.h $destination/Renderer.h
+        cp -R $parent_path/OpenGL/external/. $destination/external
+        cp -R $parent_path/OpenGL/shaders/. $destination/shaders
+        buildFile=$buildFile$(<$parent_path/OpenGL/BUILD)
+        workspaceFile=$workspaceFile$(<$parent_path/OpenGL/WORKSPACE)
+    fi
+}
